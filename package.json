@@ -1,6 +1,6 @@
 {
   "name": "botlist.space-api",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Used for interacting with botlist.space's api for node.js.",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,8 @@
   "bugs": {
     "url": "https://github.com/Wist9063/botlist.space-api/issues"
   },
-  "homepage": "https://github.com/Wist9063/botlist.space-api#readme",
-    "dependencies": {
+  "homepage": "https://github.com/Wist9063/botlist.space-api#readme.md",
+  "dependencies": {
     "request": "^2.85.0"
   }
 }
