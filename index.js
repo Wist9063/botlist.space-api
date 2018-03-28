@@ -86,4 +86,25 @@ api.prototype.postStats = function(guildCount) {
         });
     })
 };
+api.prototype.postShardStats = function(shardCount) {
+    return new Promise((resolve, reject) => {
+        request.post({
+            url: eURL + '/bots/' + this.id,
+            headers: {
+                'User-Agent': 'botlist.space-API pkg (https://github.com/Wist9063/botlist.space-api)',
+                'content-type': 'application/json',
+                "Authorization": this.auth
+            },
+            body: JSON.stringify({
+                'shards': shardCount
+            })
+        }, function(er, response, body) {
+            if (!JSON.parse(body).error) {
+                resolve();
+            } else {
+                reject(JSON.parse(body).message);
+            }
+        });
+    })
+};
 module.exports = api;
