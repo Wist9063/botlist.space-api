@@ -65,7 +65,7 @@ api.prototype.getUpvotesID = function(id) {
         });
     });
 };
-api.prototype.postStats = function(guildCount, shardCount) {
+api.prototype.postStats = function(guildCount) {
     return new Promise((resolve, reject) => {
         request.post({
             url: eURL + '/bots/' + this.id,
@@ -75,8 +75,7 @@ api.prototype.postStats = function(guildCount, shardCount) {
                 "Authorization": this.auth
             },
             body: JSON.stringify({
-                'guild_count': guildCount,
-                'shards': shardCount
+                'guild_count': guildCount
             })
         }, function(er, response, body) {
             if (!JSON.parse(body).error) {
