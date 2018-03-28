@@ -20,7 +20,6 @@ api.prototype.getBot = function(id) {
         });
     });
 };
-
 /* Gets entire list of bots */
 api.prototype.getWebsite = function(id) {
     return new Promise((resolve, reject) => {
@@ -35,7 +34,6 @@ api.prototype.getWebsite = function(id) {
         });
     });
 };
-
 /* Gets a user */
 api.prototype.getUser = function(id) {
     return new Promise((resolve, reject) => {
@@ -50,7 +48,6 @@ api.prototype.getUser = function(id) {
         });
     });
 };
-
 /* Gets Upvotes Premium Needed */
 api.prototype.getUpvotesID = function(id) {
     return new Promise((resolve, reject) => {
@@ -62,12 +59,12 @@ api.prototype.getUpvotesID = function(id) {
             }
         }, function(er, response, body) {
             if (er) return reject(er);
-            if (response = '403') return reject('Premium bots only.')
+            if (response = '403') return reject(
+                'Premium bots only.')
             return resolve(JSON.parse(body));
         });
     });
 };
-
 api.prototype.postStats = function(guildCount, shardCount) {
     return new Promise((resolve, reject) => {
         request.post({
@@ -90,6 +87,4 @@ api.prototype.postStats = function(guildCount, shardCount) {
         });
     })
 };
-
-
 module.exports = api;
