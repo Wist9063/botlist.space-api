@@ -4,9 +4,9 @@ const request = require('request');
 
 class botlistapi {
 constructor(authorization, botID) {
-    this.auth = authorization;
-    this.id = botID;
-  }
+if (authorization != null) {this.auth = authorization} else {console.log('Please enter a valid botlist.space token.')};
+if (botID != null ) {this.id = botID} else {console.log('Please enter a id.')};
+}
 
 /* Gets stats of another bot */
 getBot(id) {
@@ -20,7 +20,7 @@ getBot(id) {
             if (er) return reject(er);
             return resolve(JSON.parse(body));
         });
-    });
+    }).catch(() => { return reject(`No bot was found matching the ID ${id}.`); })
 };
 /* Gets entire list of bots */
 getWebsite() {
@@ -67,7 +67,7 @@ getUpvotesID(id) {
         });
     });
 };
- postStats(guildCount) {
+postStats(guildCount) {
     return new Promise((resolve, reject) => {
         request.post({
             url: eURL + '/bots/' + this.id,
@@ -86,7 +86,7 @@ getUpvotesID(id) {
                 reject(JSON.parse(body).message);
             }
         });
-    })
+    }).catch((i) => { return reject(`Error: ${i}`); })
 };
 postShardStats(shardCount) {
     return new Promise((resolve, reject) => {
