@@ -107,4 +107,4 @@ api.prototype.postShardStats = function(shardCount) {
         });
     })
 };
-module.exports = api;
+exports = api;
