@@ -112,5 +112,5 @@ postShardStats(shardCount) {
 
 };
 
-module.exports = botlist.space-api;
+module.exports = botlistapi;
 
