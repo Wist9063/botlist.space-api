@@ -21,7 +21,7 @@ api.prototype.getBot = function(id) {
     });
 };
 /* Gets entire list of bots */
-api.prototype.getWebsite = function(id) {
+api.prototype.getWebsite = function() {
     return new Promise((resolve, reject) => {
         request({
             url: eURL + '/bots/',
