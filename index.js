@@ -2,12 +2,14 @@
 const eURL = 'https://botlist.space/api';
 const request = require('request');
 
-function api(authorization, botID) {
+class botlistapi {
+constructor(authorization, botID) {
     this.auth = authorization;
     this.id = botID;
-}
+  }
+
 /* Gets stats of another bot */
-api.prototype.getBot = function(id) {
+getBot(id) {
     return new Promise((resolve, reject) => {
         request({
             url: eURL + '/bots/' + id,
@@ -21,7 +23,7 @@ api.prototype.getBot = function(id) {
     });
 };
 /* Gets entire list of bots */
-api.prototype.getWebsite = function() {
+getWebsite() {
     return new Promise((resolve, reject) => {
         request({
             url: eURL + '/bots/',
@@ -35,7 +37,7 @@ api.prototype.getWebsite = function() {
     });
 };
 /* Gets a user */
-api.prototype.getUser = function(id) {
+getUser(id) {
     return new Promise((resolve, reject) => {
         request({
             url: eURL + '/users/' + id,
@@ -49,7 +51,7 @@ api.prototype.getUser = function(id) {
     });
 };
 /* Gets Upvotes Premium Needed */
-api.prototype.getUpvotesID = function(id) {
+getUpvotesID(id) {
     return new Promise((resolve, reject) => {
         request({
             url: eURL + '/bots/' + id + '?ids=true',
@@ -65,7 +67,7 @@ api.prototype.getUpvotesID = function(id) {
         });
     });
 };
-api.prototype.postStats = function(guildCount) {
+ postStats(guildCount) {
     return new Promise((resolve, reject) => {
         request.post({
             url: eURL + '/bots/' + this.id,
@@ -86,7 +88,7 @@ api.prototype.postStats = function(guildCount) {
         });
     })
 };
-api.prototype.postShardStats = function(shardCount) {
+postShardStats(shardCount) {
     return new Promise((resolve, reject) => {
         request.post({
             url: eURL + '/bots/' + this.id,
@@ -107,4 +109,8 @@ api.prototype.postShardStats = function(shardCount) {
         });
     })
 };
-exports = api;
+
+};
+
+module.exports = botlist.space-api;
+
