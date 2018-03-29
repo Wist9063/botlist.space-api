@@ -1,6 +1,7 @@
+[![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
 # botlist.space-api
 Used for interacting with botlist.space's api for node.js.
-[![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
+
 
 ## Launch the API
 To launch the API follow the text below:
