@@ -11,14 +11,14 @@ const request = require('request');
 class botlistapi {
     constructor(authorization, botID) {
         if (authorization != null) {
-            this.auth = authorization
+            this.auth = authorization;
         } else {
-            console.log('Please enter a valid botlist.space token.')
+            console.log("Please enter a valid botlist.space token.");
         };
         if (botID != null) {
-            this.id = botID
+            this.id = botID;
         } else {
-            console.log('Please enter a id.')
+            console.log("Please enter an ID.");
         };
     }
 
@@ -41,7 +41,7 @@ class botlistapi {
             );
 
 
-        }).catch(() => {})
+        })
     };
 
     async getWebsite() {
@@ -63,14 +63,14 @@ class botlistapi {
             );
 
 
-        }).catch(() => {})
+        })
     };
 
     async postGuild(guildNum, shardChoice) {
         return new Promise((resolve, reject) => {
             if (shardChoice != null) {
 
-                if (shardChoice == true) {
+                if (shardChoice === true) {
                     if (guildNum == null) {
                         console.log('Please enter a shard count.')
                     }
@@ -115,7 +115,7 @@ class botlistapi {
                     );
                 }
             };
-        }).catch(() => {})
+        })
     };
 
     async getUser(id) {
@@ -137,7 +137,7 @@ class botlistapi {
             );
 
 
-        }).catch(() => {})
+        })
     };
 
 
