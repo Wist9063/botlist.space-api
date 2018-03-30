@@ -1,22 +1,22 @@
-[![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)](https://greenkeeper.io/)
+
 # botlist.space-api
 Used for interacting with botlist.space's api for node.js.
-
+***
+![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
 
 ## Launch the API
 To launch the API follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
 
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 ```
 
 ## Posting Non-Sharded Bot Guild Count
 To post guild count **without** shards follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.postStats(313)
 ```
@@ -25,7 +25,7 @@ botlistapi.postStats(313)
 To post sharded guild count follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 const ShardCount = 'Just pust this in each shard & you should be good.';
 
 botlistapi.postShardStats(ShardCount)
@@ -35,7 +35,7 @@ botlistapi.postShardStats(ShardCount)
 To get the entire list of bots on the website follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getWebsite().then(i => {
 console.log(i)
@@ -47,7 +47,7 @@ console.log(i)
 To get a certain bot follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getBot('botID').then(i => { 
 console.log(i)
@@ -90,7 +90,7 @@ console.log(i)
 To get a certain bot follow the text below:
 ```js
 const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getUser('USERID')
 ```
@@ -128,15 +128,5 @@ botlistapi.getUser('USERID')
    ]
 }
 ```
-## Get upvotes ID (Premium Required)
-To get upvote user ID follow the code below.
-(Premium Required)
 
-```js
-const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA.api('SomeKeyhere', 'SomeIDhere')
-
-botlistapi.getUpvotesID('BOTID')
-```
-
-## More functions soon!
+# More functions soon!
