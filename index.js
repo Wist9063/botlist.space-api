@@ -33,7 +33,8 @@ class botlistapi {
                 },
                 function(error, response, body) {
                     try {
-                        return resolve(JSON.parse(body));
+                        body = JSON.parse(body)
+                        return resolve(body);
                     } catch (err) {
                         return reject(err);
                     }
@@ -55,7 +56,8 @@ class botlistapi {
                 },
                 function(error, response, body) {
                     try {
-                        return resolve(JSON.parse(body));
+                        body = JSON.parse(body);
+                        return resolve(body);
                     } catch (err) {
                         return reject(err);
                     }
@@ -129,7 +131,8 @@ class botlistapi {
                 },
                 function(error, response, body) {
                     try {
-                        return resolve(JSON.parse(body));
+                        body = JSON.parse(body)
+                        return resolve(body);
                     } catch (err) {
                         return reject(err);
                     }
