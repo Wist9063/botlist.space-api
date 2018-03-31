@@ -7,6 +7,7 @@
 // Consts and stuff
 const eURL = 'https://botlist.space/api';
 const request = require('request');
+const snekfetch = require('snekfetch')
 
 class botlistapi {
     constructor(authorization, botID) {
@@ -47,9 +48,8 @@ class botlistapi {
 
     async getWebsite() {
         return new Promise((resolve, reject) => {
-            if (!id) return reject('Please enter an ID.')
             request({
-                    url: `${eURL}/bots/${id}`,
+                    url: `${eURL}/bots/`,
                     headers: {
                         'User-Agent': 'botlist.space-api Request PKG'
                     }
@@ -68,56 +68,16 @@ class botlistapi {
         })
     };
 
-    async postGuild(guildNum, shardChoice) {
+    async postStats(guild) {
         return new Promise((resolve, reject) => {
-            if (shardChoice != null) {
-
-                if (shardChoice === true) {
-                    if (guildNum == null) {
-                        console.log('Please enter a shard count.')
-                    }
-                    request.post({
-                            url: `${eURL}/bots/${id}`,
-                            headers: {
-                                'User-Agent': 'botlist.space-api Request PKG',
-                                'content-type': 'application/json',
-                                "Authorization": this.auth
-                            },
-                            body: JSON.stringify({
-                                'shards': shardCount
-                            })
-                        },
-                        function(error, response, body) {
-                            try {
-                                return resolve(JSON.parse(body));
-                            } catch (err) {
-                                return reject(err);
-                            }
-                        }
-                    );
-                } else {
-                    request.post({
-                            url: `${eURL}/bots/${id}`,
-                            headers: {
-                                'User-Agent': 'botlist.space-api Request PKG',
-                                'content-type': 'application/json',
-                                "Authorization": this.auth
-                            },
-                            body: JSON.stringify({
-                                'shards': shardCount
-                            })
-                        },
-                        function(error, response, body) {
-                            try {
-                                return resolve(JSON.parse(body));
-                            } catch (err) {
-                                return reject(err);
-                            }
-                        }
-                    );
-                }
-            };
-        })
+            snekfetch.post(`${eURL}/bots/${id}`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', this.auth)
+            .set('User-Agent', 'botlist.space-api Request PKG')
+            .send({"server_count": guild})
+            .then(() => resolve('Guild Number sent'))
+            .catch(err => reject(err))
+        });
     };
 
     async getUser(id) {
