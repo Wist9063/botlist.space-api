@@ -23,14 +23,7 @@ botlistapi.postStats(313)
 ```
 
 ## Posting Sharded Bot Guild Count
-To post sharded guild count follow the text below:
-```js
-const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
-const ShardCount = 'Just pust this in each shard & you should be good.';
-
-botlistapi.postShardStats(ShardCount)
-```
+Support of Sharded bot Guild count will be supported in the future.
 
 ## Get Entire List of bots
 To get the entire list of bots on the website follow the text below:
@@ -93,7 +86,9 @@ To get a certain bot follow the text below:
 const BLSA = require('botlist.space-api')
 const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
-botlistapi.getUser('USERID')
+botlistapi.getUser('USERID').then(i => {
+console.log(i)
+});
 ```
 **Returns:** 
 ```json 
@@ -129,5 +124,3 @@ botlistapi.getUser('USERID')
    ]
 }
 ```
-
-# More functions soon!
