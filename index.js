@@ -14,12 +14,12 @@ class botlistapi {
         if (authorization != null) {
             this.auth = authorization;
         } else {
-            console.log("Please enter a valid botlist.space token.");
+            console.log("Please enter a valid botlist.space token to post stats.");
         };
         if (botID != null) {
             this.id = botID;
         } else {
-            console.log("Please enter an ID.");
+            console.log("Please enter an ID to post stats.");
         };
     }
 
@@ -70,7 +70,7 @@ class botlistapi {
 
     async postStats(guild) {
         return new Promise((resolve, reject) => {
-            snekfetch.post(`${eURL}/bots/${id}`)
+            snekfetch.post(`${eURL}/bots/${this.id}`)
             .set('Content-Type', 'application/json')
             .set('Authorization', this.auth)
             .set('User-Agent', 'botlist.space-api Request PKG')
