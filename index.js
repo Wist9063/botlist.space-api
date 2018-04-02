@@ -73,6 +73,7 @@ class botlistapi {
             snekfetch.post(`${eURL}/bots/${this.id}`)
             .set('Content-Type', 'application/json')
             .set('Authorization', this.auth)
+            .set('User-Agent', 'botlist.space-api Request PKG')
             .send({"server_count": guild})
             .then(() => resolve('Guild Number sent'))
             .catch(err => reject(err))
