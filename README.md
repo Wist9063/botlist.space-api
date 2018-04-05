@@ -19,7 +19,9 @@ To post guild count **without** shards follow the text below:
 const BLSA = require('botlist.space-api')
 const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
-botlistapi.postStats(313)
+botlistapi.postStats(313).catch(i => {
+console.log(i)
+});
 ```
 
 ## Posting Sharded Bot Guild Count
