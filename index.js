@@ -5,7 +5,7 @@
         Author: Wist9063 - 2018
         Wist9063/botlist.space-api is licensed under the MIT License
 
-        ***
+        ****
 
         MIT License
 
@@ -32,7 +32,7 @@
 
 // Consts and stuff
 const request = require('request');
-const snekfetch = require('snekfetch')
+const snekfetch = require('snekfetch') // Used of posting stats
 
 /**
  * Creates a new api connection.
@@ -42,7 +42,6 @@ const snekfetch = require('snekfetch')
  * @param {String} authorization The authorization provided from the bot's token page.
  * @param {String} botID The ID of the bot.
  */
-
 class botlistapi {
     constructor(authorization, botID) {
         if (authorization != null) {
@@ -58,13 +57,14 @@ class botlistapi {
         this._eURL = 'https://botlist.space/api';
     }
 
-	/**
-	 * Retrieves information about a specific bot.
-	 * @returns {Promise} The returned data.
-	 * @memberof botlistapi
-	 * @param {String} The ID of the bot you want to get information on.
-	 */
+    /**
+     * Retrieves information about a specific bot.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     * @param {String} The ID of the bot you want to get information on.
+     */
     async getBot(id) {
+        if (typeof id !== 'string') throw new TypeError('Bot ID is not a string');
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
             request({
@@ -87,11 +87,11 @@ class botlistapi {
         })
     };
 
-	/**
-	 * Gets all bots from the site.
-	 * @returns {Promise} The returned data.
-	 * @memberof botlistapi
-	 */
+    /**
+     * Gets all bots from the site.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     */
     async getWebsite() {
         return new Promise((resolve, reject) => {
             request({
@@ -114,37 +114,43 @@ class botlistapi {
         })
     };
 
-   /**
-	 * Posts server count to the site.
-	 * @returns {Promise} The returned data.
-	 * @memberof botlistapi
-	 * @param {Array | Integer} count The server count, or array of server count as shards.
-	 */
+    /**
+     * Posts server count to the site.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     * @param {Array | Integer} count The server count, or array of server count as shards.
+     */
     async postStats(guild) {
+        if (typeof guild !== 'number' && !(guild instanceof Array)) throw new TypeError('Server count is not a number or shards array. (NaN)');
         return new Promise((resolve, reject) => {
             let data;
             if (guild instanceof Array) {
-                data = { "shards": guild };
+                data = {
+                    "shards": guild
+                };
             } else {
-                data = { "server_count": guild };
+                data = {
+                    "server_count": guild
+                };
             };
             snekfetch.post(`${this._eURL}/bots/${this.id}`)
-            .set('Content-Type', 'application/json')
-            .set('Authorization', this.auth)
-            .set('User-Agent', 'botlist.space-api Request PKG')
-            .send(data)
-            .then(() => resolve('Guild Number sent'))
-            .catch(err => reject(err))
+                .set('Content-Type', 'application/json')
+                .set('Authorization', this.auth)
+                .set('User-Agent', 'botlist.space-api Request PKG')
+                .send(data)
+                .then(() => resolve('Guild Number sent'))
+                .catch(err => reject(err))
         });
     };
 
-   /**
-	 * Gets information about a specific bot.
-	 * @returns {Promise} The returned data.
-	 * @memberof botlistapi
-	 * @param {String} id The ID of the bot you want to get information on.
-	 */
+    /**
+     * Gets information about a specific bot.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     * @param {String} id The ID of the bot you want to get information on.
+     */
     async getUser(id) {
+        if (typeof id !== 'string') throw new TypeError('User ID is not a string');
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
             request({
@@ -167,11 +173,11 @@ class botlistapi {
         })
     };
 
-   /**
-	 * Gets the stats from the website.
-	 * @returns {Promise} The returned data.
-	 * @memberof botlistapi
-	 */
+    /**
+     * Gets the stats from the website.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     */
     async getStats() {
         return new Promise((resolve, reject) => {
             request({
