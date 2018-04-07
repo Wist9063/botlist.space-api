@@ -4,6 +4,7 @@ Used for interacting with botlist.space's api for node.js.
 ![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8e83487b2a349aba7501bfc156060ea)](https://www.codacy.com/app/Wist9063/botlist.space-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wist9063/botlist.space-api&amp;utm_campaign=Badge_Grade)
 
+[![Build Status](https://travis-ci.org/Wist9063/botlist.space-api.svg?branch=master)](https://travis-ci.org/Wist9063/botlist.space-api)
 ## Launch the API
 To launch the API follow the text below:
 ```js
