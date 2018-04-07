@@ -61,7 +61,7 @@ class botlistapi {
 	/**
 	 * Retrieves information about a specific bot.
 	 * @returns {Promise} The returned data.
-	 * @memberof Client
+	 * @memberof botlistapi
 	 * @param {String} The ID of the bot you want to get information on.
 	 */
     async getBot(id) {
@@ -87,12 +87,11 @@ class botlistapi {
         })
     };
 
-    /**
-     * 
-     * 
-     * 
-     * 
-     */
+	/**
+	 * Gets all bots from the site.
+	 * @returns {Promise} The returned data.
+	 * @memberof botlistapi
+	 */
     async getWebsite() {
         return new Promise((resolve, reject) => {
             request({
@@ -115,13 +114,19 @@ class botlistapi {
         })
     };
 
+   /**
+	 * Posts server count to the site.
+	 * @returns {Promise} The returned data.
+	 * @memberof botlistapi
+	 * @param {Array | Integer} count The server count, or array of server count as shards.
+	 */
     async postStats(guild) {
         return new Promise((resolve, reject) => {
             let data;
             if (guild instanceof Array) {
-                data = { "shards": count };
+                data = { "shards": guild };
             } else {
-                data = { "server_count": count };
+                data = { "server_count": guild };
             };
             snekfetch.post(`${this._eURL}/bots/${this.id}`)
             .set('Content-Type', 'application/json')
@@ -133,6 +138,12 @@ class botlistapi {
         });
     };
 
+   /**
+	 * Gets information about a specific bot.
+	 * @returns {Promise} The returned data.
+	 * @memberof botlistapi
+	 * @param {String} id The ID of the bot you want to get information on.
+	 */
     async getUser(id) {
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
@@ -145,6 +156,33 @@ class botlistapi {
                 function(error, response, body) {
                     try {
                         body = JSON.parse(body)
+                        return resolve(body);
+                    } catch (err) {
+                        return reject(err);
+                    }
+                }
+            );
+
+
+        })
+    };
+
+   /**
+	 * Gets the stats from the website.
+	 * @returns {Promise} The returned data.
+	 * @memberof botlistapi
+	 */
+    async getStats() {
+        return new Promise((resolve, reject) => {
+            request({
+                    url: `${this._eURL}/stats/`,
+                    headers: {
+                        'User-Agent': 'botlist.space-api Request PKG'
+                    }
+                },
+                function(error, response, body) {
+                    try {
+                        body = JSON.parse(body);
                         return resolve(body);
                     } catch (err) {
                         return reject(err);
