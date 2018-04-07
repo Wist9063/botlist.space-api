@@ -1,4 +1,4 @@
-# botlist.space-api
+# botlist.space-api    ![David-dm](https://david-dm.org/Wist9063/botlist.spacepi.svg)
 Used for interacting with botlist.space's api for node.js. 
 ***
 ![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
@@ -13,7 +13,7 @@ const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 ```
 
 ## Posting Non-Sharded & Sharded Bot Guild Count
-To post guild count **without** shards follow the text below:
+To post guild count **without** shards follow the text below: ***Requires Auth***
 ```js
 const botlistspaceapi = require('botlist.space-api')
 const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
@@ -147,8 +147,24 @@ console.log(i)
     "approvedBots": x,
     "unapprovedBots": x
 }
-
 ```
 
 ## Get Upvotes
-I will be adding upvotes soon™
+To get upvotes if it's a premium bot, follow the text below: ***Requires Auth***
+
+```js
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
+
+// To get non-IDs response 
+botlistapi.getUpvotes('PremiumBotID').then(i => { 
+console.log(i)
+})
+
+// To get ID Arrays response 
+botlistapi.getUpvotes('PremiumBotID', true).then(i => { 
+console.log(i)
+})
+```
+
+**Returns:** `Object` | `Array<Id>` | `HTTP Error 403` | `HTTP Error 404` | `HTTP Error 400` 
