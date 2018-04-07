@@ -1,4 +1,4 @@
-# botlist.space-api    ![David-dm](https://david-dm.org/Wist9063/botlist.spacepi.svg)
+# botlist.space-api    ![David-dm](https://david-dm.org/Wist9063/botlist.space-api.svg)
 Used for interacting with botlist.space's api for node.js. 
 ***
 ![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
