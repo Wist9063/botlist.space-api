@@ -206,6 +206,13 @@ class botlistapi {
         })
     };
 
+   /**
+     * Gets upvotes about a specific premium bot.
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     * @param {String} id The ID of the bot you want to get information on.
+     * @param {boolean} choice The choice if you want to get IDs or objects.
+     */
     async getUpvotes(id, choice) {
         if (typeof id !== 'string') {
             throw new TypeError("User ID is not a string")
