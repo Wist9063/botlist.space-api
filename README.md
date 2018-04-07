@@ -1,6 +1,5 @@
-
 # botlist.space-api
-Used for interacting with botlist.space's api for node.js.
+Used for interacting with botlist.space's api for node.js. 
 ***
 ![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8e83487b2a349aba7501bfc156060ea)](https://www.codacy.com/app/Wist9063/botlist.space-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wist9063/botlist.space-api&amp;utm_campaign=Badge_Grade)
@@ -8,48 +7,53 @@ Used for interacting with botlist.space's api for node.js.
 ## Launch the API
 To launch the API follow the text below:
 ```js
-const BLSA = require('botlist.space-api')
+const botlistspaceapi = require('botlist.space-api')
 
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 ```
 
-## Posting Non-Sharded Bot Guild Count
+## Posting Non-Sharded & Sharded Bot Guild Count
 To post guild count **without** shards follow the text below:
 ```js
-const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
+// Non-Sharded
 botlistapi.postStats(313).catch(i => {
 console.log(i)
 });
-```
 
-## Posting Sharded Bot Guild Count
-Support of Sharded bot Guild count will be supported in the future.
+// Sharded
+botlistapi.postStats(ShardArrayHere).catch(i => {
+console.log(i)
+});
+```
+**Returns:** `Object` | `HTTP Error 403` | `HTTP Error 404` | `HTTP Error 400`
 
 ## Get Entire List of bots
 To get the entire list of bots on the website follow the text below:
 ```js
-const BLSA = require('botlist.space-api')
+const botlistspaceapi = require('botlist.space-api')
 const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getWebsite().then(i => {
 console.log(i)
 });
 ```
-**Returns:** Check the link [here](https://botlist.space/api/bots). (Too big to show)
+**Returns:** `Array<bot>`
+Check the link [here](https://botlist.space/api/bots). (Too big to show)
 
 ## Get a bot
 To get a certain bot follow the text below:
 ```js
-const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getBot('botID').then(i => { 
 console.log(i)
 });
 ```
-**Returns:** 
+**Returns:** `Object` | `HTTP Error 404`
 ```json
 {
    "approved":true,
@@ -85,14 +89,14 @@ console.log(i)
 ## Gets user's bots
 To get a certain bot follow the text below:
 ```js
-const BLSA = require('botlist.space-api')
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getUser('USERID').then(i => {
 console.log(i)
 });
 ```
-**Returns:** 
+**Returns:** `Object` | `HTTP Error 404` | `HTTP Error 400`
 ```json 
 {
    "username":"Wistful__",
@@ -126,3 +130,25 @@ console.log(i)
    ]
 }
 ```
+
+## Get stats
+To get stats of the website follow the text below:
+```js
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
+
+botlistapi.Stats().then(i => { 
+console.log(i)
+});
+```
+**Returns:**  `Object`
+```json
+{
+    "approvedBots": x,
+    "unapprovedBots": x
+}
+
+```
+
+## Get Upvotes
+I will be adding upvotes soon™
