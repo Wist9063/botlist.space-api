@@ -64,7 +64,9 @@ class botlistapi {
      * @param {String} The ID of the bot you want to get information on.
      */
     async getBot(id) {
-        if (typeof id !== 'string') {throw new TypeError('Bot ID is not a string')};
+        if (typeof id !== 'string') {
+            throw new TypeError('Bot ID is not a string')
+        };
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
             request({
@@ -121,7 +123,9 @@ class botlistapi {
      * @param {Array | Integer} count The server count, or array of server count as shards.
      */
     async postStats(guild) {
-        if (typeof guild !== 'number' && !(guild instanceof Array)) {throw new TypeError('Server count is not a number or shards array. (NaN)')};
+        if (typeof guild !== 'number' && !(guild instanceof Array)) {
+            throw new TypeError('Server count is not a number or shards array. (NaN)')
+        };
         return new Promise((resolve, reject) => {
             let data;
             if (guild instanceof Array) {
@@ -150,7 +154,9 @@ class botlistapi {
      * @param {String} id The ID of the bot you want to get information on.
      */
     async getUser(id) {
-        if (typeof id !== 'string') {throw new TypeError('User ID is not a string')};
+        if (typeof id !== 'string') {
+            throw new TypeError('User ID is not a string')
+        };
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
             request({
@@ -197,6 +203,52 @@ class botlistapi {
             );
 
 
+        })
+    };
+
+    async getUpvotes(id, choice) {
+        if (typeof id !== 'string') {
+            throw new TypeError("User ID is not a string")
+        };
+        return new Promise((resolve, reject) => {
+
+            if (choice != null) {
+                if (x == true) {
+                    request({
+                            url: `${this._eURL}/bots/${id}/upvotes?ids=true`,
+                            headers: {
+                                'User-Agent': "botlist.space-api Request PKG"
+                            }
+                        },
+                        function(error, response, body) {
+                            try {
+                                body = JSON.parse(body);
+                                return resolve(body);
+                            } catch (err) {
+                                return reject(err);
+                            }
+                        }
+                    );
+                }
+            }
+
+            if (choice == null) {
+                request({
+                        url: `${this._eURL}/bots/${id}/upvotes`,
+                        headers: {
+                            'User-Agent': "botlist.space-api Request PKG"
+                        }
+                    },
+                    function(error, response, body) {
+                        try {
+                            body = JSON.parse(body);
+                            return resolve(body);
+                        } catch (err) {
+                            return reject(err);
+                        }
+                    }
+                );
+            }
         })
     };
 
