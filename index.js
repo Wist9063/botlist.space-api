@@ -220,7 +220,7 @@ class botlistapi {
         return new Promise((resolve, reject) => {
 
             if (choice != null) {
-                if (x == true) {
+                if (choice == true) {
                     request({
                             url: `${this._eURL}/bots/${id}/upvotes?ids=true`,
                             headers: {
@@ -239,7 +239,7 @@ class botlistapi {
                 }
             }
 
-            if (choice == null) {
+            if (choice == null || choice == false)  {
                 request({
                         url: `${this._eURL}/bots/${id}/upvotes`,
                         headers: {
