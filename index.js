@@ -47,12 +47,12 @@ class botlistapi {
         if (authorization != null) {
             this.auth = authorization;
         } else {
-            Console.log("Please enter a valid botlist.space token to post stats.");
+            console.log("Please enter a valid botlist.space token to post stats.");
         }
         if (botID != null) {
             this.id = botID;
         } else {
-            Console.log("Please enter an ID to post stats.");
+            console.log("Please enter an ID to post stats.");
         };
         this._eURL = 'https://botlist.space/api';
     }
