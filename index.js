@@ -64,7 +64,7 @@ class botlistapi {
      * @param {String} The ID of the bot you want to get information on.
      */
     async getBot(id) {
-        if (typeof id !== string) {
+        if (typeof id !== 'string') {
             throw new TypeError("Bot ID is not a string");
         };
         return new Promise((resolve, reject) => {
@@ -123,7 +123,7 @@ class botlistapi {
      * @param {Array | Integer} count The server count, or array of server count as shards.
      */
     async postStats(guild) {
-        if (typeof guild !== number && !(guild instanceof Array)) {
+        if (typeof guild !== 'number' && !(guild instanceof Array)) {
             throw new TypeError("Server count is not a number or shards array. (NaN)")
         };
         return new Promise((resolve, reject) => {
@@ -154,7 +154,7 @@ class botlistapi {
      * @param {String} id The ID of the bot you want to get information on.
      */
     async getUser(id) {
-        if (typeof id !== string) {
+        if (typeof id !== 'string') {
             throw new TypeError('User ID is not a string')
         };
         return new Promise((resolve, reject) => {
