@@ -123,7 +123,7 @@ class botlistapi {
      * @param {Array | Integer} count The server count, or array of server count as shards.
      */
     async postStats(guild) {
-        if (typeof guild !== 'number' && !(guild instanceof Array)) {
+        if (typeof guild !== "number" && !(guild instanceof Array)) {
             throw new TypeError("Server count is not a number or shards array. (NaN)")
         };
         return new Promise((resolve, reject) => {
