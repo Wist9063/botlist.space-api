@@ -1,6 +1,6 @@
-const botlistspaceapi = require('./index.js')
-const api = new botlistspaceapi()
+const botlistspaceapi = require('./index.js');
+const Api = new botlistspaceapi()
 
-api.getBot('341980888239702017').then(i => { 
-    console.log(i)
+Api.getBot('341980888239702017').then(i => { 
+    Console.log(i)
     });

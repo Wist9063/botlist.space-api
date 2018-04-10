@@ -47,12 +47,12 @@ class botlistapi {
         if (authorization != null) {
             this.auth = authorization;
         } else {
-            console.log("Please enter a valid botlist.space token to post stats.");
-        };
+            Console.log("Please enter a valid botlist.space token to post stats.");
+        }
         if (botID != null) {
             this.id = botID;
         } else {
-            console.log("Please enter an ID to post stats.");
+            Console.log("Please enter an ID to post stats.");
         };
         this._eURL = 'https://botlist.space/api';
     }
@@ -64,11 +64,11 @@ class botlistapi {
      * @param {String} The ID of the bot you want to get information on.
      */
     async getBot(id) {
-        if (typeof id !== 'string') {
-            throw new TypeError('Bot ID is not a string')
+        if (typeof id !== string) {
+            throw new TypeError("Bot ID is not a string");
         };
         return new Promise((resolve, reject) => {
-            if (!id) return reject('Please enter an ID.')
+            if (!id) {return reject('Please enter an ID.')};
             request({
                     url: `${this._eURL}/bots/${id}`,
                     headers: {
@@ -86,7 +86,7 @@ class botlistapi {
             );
 
 
-        })
+        });
     };
 
     /**
@@ -123,8 +123,8 @@ class botlistapi {
      * @param {Array | Integer} count The server count, or array of server count as shards.
      */
     async postStats(guild) {
-        if (typeof guild !== 'number' && !(guild instanceof Array)) {
-            throw new TypeError('Server count is not a number or shards array. (NaN)')
+        if (typeof guild !== number && !(guild instanceof Array)) {
+            throw new TypeError("Server count is not a number or shards array. (NaN)")
         };
         return new Promise((resolve, reject) => {
             let data;
@@ -142,7 +142,7 @@ class botlistapi {
                 .set('Authorization', this.auth)
                 .set('User-Agent', 'botlist.space-api Request PKG')
                 .send(data)
-                .then(() => resolve('Guild Number sent'))
+                .then(() => resolve("Guild Number sent"))
                 .catch(err => reject(err))
         });
     };
@@ -154,7 +154,7 @@ class botlistapi {
      * @param {String} id The ID of the bot you want to get information on.
      */
     async getUser(id) {
-        if (typeof id !== 'string') {
+        if (typeof id !== string) {
             throw new TypeError('User ID is not a string')
         };
         return new Promise((resolve, reject) => {
@@ -239,7 +239,7 @@ class botlistapi {
                 }
             }
 
-            if (choice == null || choice == false)  {
+            if (choice === null || choice === false)  {
                 request({
                         url: `${this._eURL}/bots/${id}/upvotes`,
                         headers: {
