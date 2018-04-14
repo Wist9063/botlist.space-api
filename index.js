@@ -1,34 +1,36 @@
-/* 
-        botlist.space-api written in JavaScript. (node.js)
-        https://github.com/Wist9063/botlist.space-api
-
-        Author: Wist9063 - 2018
-        Wist9063/botlist.space-api is licensed under the MIT License
-
-        ****
-
-        MIT License
-
-        Copyright (c) 2018 Wist9063
-
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-
-        The above copyright notice and this permission notice shall be included in all
-        copies or substantial portions of the Software.
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
-*/
+/**
+ *       @copyright
+ *       botlist.space-api written in JavaScript. (node.js)
+ *       https://github.com/Wist9063/botlist.space-api
+ *
+ *       @author Wist9063 <https://keybase.io/wist9063>
+ *       Wist9063/botlist.space-api is licensed under the MIT License
+ *
+ *       ****
+ *       @license Wist9063/botlist.space-api is licensed under the MIT License
+ * 
+ *       MIT License
+ *
+ *       Copyright (c) 2018 Wist9063
+ *
+ *       Permission is hereby granted, free of charge, to any person obtaining a copy
+ *       of this software and associated documentation files (the "Software"), to deal
+ *       in the Software without restriction, including without limitation the rights
+ *       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *       copies of the Software, and to permit persons to whom the Software is
+ *       furnished to do so, subject to the following conditions:
+ *
+ *       The above copyright notice and this permission notice shall be included in all
+ *       copies or substantial portions of the Software.
+ *
+ *       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *       SOFTWARE.
+ */
 
 // Consts and stuff
 const request = require('request');
@@ -180,6 +182,16 @@ class botlistapi {
     };
 
     /**
+     * Gets info for your bot if you entered a botID
+     * @returns {Promise} The returned data.
+     * @memberof botlistapi
+     * @borrows getBot as getThisBot   
+     */
+    async getThisBot() {
+        return this.getBot(this.id)
+    };
+
+    /**
      * Gets the stats from the website.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
@@ -220,7 +232,7 @@ class botlistapi {
         return new Promise((resolve, reject) => {
 
             if (choice != null) {
-                if (choice == true) {
+                if (choice === true) {
                     request({
                             url: `${this._eURL}/bots/${id}/upvotes?ids=true`,
                             headers: {
