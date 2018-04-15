@@ -1,5 +1,5 @@
 # botlist.space-api    ![David-dm](https://david-dm.org/Wist9063/botlist.space-api.svg)
-Used for interacting with botlist.space's api for node.js. 
+Well documented, Light-Weight API Library Wrapper for botlist.space. Written in JavaScript(Node.js).
 ***
 ![Greenkeeper badge](https://badges.greenkeeper.io/Wist9063/botlist.space-api.svg)     [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8e83487b2a349aba7501bfc156060ea)](https://www.codacy.com/app/Wist9063/botlist.space-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wist9063/botlist.space-api&amp;utm_campaign=Badge_Grade)
@@ -168,4 +168,4 @@ console.log(i)
 })
 ```
 
-**Returns:** `Object` | `Array<Id>` | `HTTP Error 403` | `HTTP Error 404` | `HTTP Error 400` 
+**Returns:** `Array<Object>` | `Array<Id>` | `HTTP Error 403` | `HTTP Error 404` | `HTTP Error 400` 
