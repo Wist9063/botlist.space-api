@@ -32,9 +32,11 @@
  *       SOFTWARE.
  */
 
+/* eslint-disable no-console */
+
 // Consts and stuff
 const request = require('request');
-const snekfetch = require('snekfetch') // Used of posting stats
+const snekfetch = require('snekfetch'); // Used of posting stats
 
 /**
  * Creates a new api connection.
@@ -56,7 +58,7 @@ class botlistapi {
         } else {
             console.log("Please enter an ID to post stats.");
         };
-        this._eURL = 'https://botlist.space/api';
+        this._eURL = "https://botlist.space/api";
     }
 
     /**
@@ -70,11 +72,11 @@ class botlistapi {
             throw new TypeError("Bot ID is not a string");
         };
         return new Promise((resolve, reject) => {
-            if (!id) {return reject('Please enter an ID.')};
+            if (!id) {return reject("Please enter an ID.")};
             request({
                     url: `${this._eURL}/bots/${id}`,
                     headers: {
-                        'User-Agent': 'botlist.space-api Request PKG'
+                        'User-Agent': "botlist.space-api Request PKG"
                     }
                 },
                 function(error, response, body) {
@@ -145,7 +147,7 @@ class botlistapi {
                 .set('User-Agent', 'botlist.space-api Request PKG')
                 .send(data)
                 .then(() => resolve("Guild Number sent"))
-                .catch(err => reject(err))
+                .catch(err => reject(err));
         });
     };
 
@@ -227,7 +229,7 @@ class botlistapi {
      */
     async getUpvotes(id, choice) {
         if (typeof id !== 'string') {
-            throw new TypeError("User ID is not a string")
+            throw new TypeError("User ID is not a string");
         };
         return new Promise((resolve, reject) => {
 
@@ -236,7 +238,8 @@ class botlistapi {
                     request({
                             url: `${this._eURL}/bots/${id}/upvotes?ids=true`,
                             headers: {
-                                'User-Agent': "botlist.space-api Request PKG"
+                                'User-Agent': "botlist.space-api Request PKG",
+                                'Authorization': this.auth
                             }
                         },
                         function(error, response, body) {
@@ -255,7 +258,8 @@ class botlistapi {
                 request({
                         url: `${this._eURL}/bots/${id}/upvotes`,
                         headers: {
-                            'User-Agent': "botlist.space-api Request PKG"
+                            'User-Agent': "botlist.space-api Request PKG",
+                            'Authorization': this.auth
                         }
                     },
                     function(error, response, body) {
