@@ -132,13 +132,25 @@ console.log(i)
 }
 ```
 
+## Get your bot
+To your bot follow the text below:
+```js
+const botlistspaceapi = require('botlist.space-api')
+const botlistapi = new botlistspaceapi('SomeKeyhere', '341980888239702017')
+
+botlistapi.getThisBot().then(i => {
+console.log(i)
+});
+```
+**Returns:** `Object` | `HTTP Error 404`
+See: [Get A Bot.](https://github.com/Wist9063/botlist.space-api#get-a-bot) For output.
 ## Get stats
 To get stats of the website follow the text below:
 ```js
 const botlistspaceapi = require('botlist.space-api')
 const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
-botlistapi.Stats().then(i => { 
+botlistapi.getStats().then(i => { 
 console.log(i)
 });
 ```

@@ -56,7 +56,7 @@ class botlistapi {
         if (botID != null) {
             this.id = botID;
         } else {
-            console.log("Please enter an ID to post stats.");
+            console.log("Please enter an ID to post stats or get your own bot.");
         };
         this._eURL = "https://botlist.space/api";
     }
@@ -65,11 +65,11 @@ class botlistapi {
      * Retrieves information about a specific bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {String} The ID of the bot you want to get information on.
+     * @param {Number} The ID of the bot you want to get information on.
      */
     async getBot(id) {
-        if (typeof id !== 'string') {
-            throw new TypeError("Bot ID is not a string");
+        if (typeof id !== 'number') {
+            throw new TypeError("Bot ID is not a number. (NaN)");
         };
         return new Promise((resolve, reject) => {
             if (!id) {return reject("Please enter an ID.")};
@@ -155,11 +155,11 @@ class botlistapi {
      * Gets information about a specific bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {String} id The ID of the bot you want to get information on.
+     * @param {Number} id The ID of the bot you want to get information on.
      */
     async getUser(id) {
-        if (typeof id !== 'string') {
-            throw new TypeError('User ID is not a string')
+        if (typeof id !== 'number') {
+            throw new TypeError('User ID is not a number. (')
         };
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
@@ -176,7 +176,7 @@ class botlistapi {
                     } catch (err) {
                         return reject(err);
                     }
-                }
+                } 
             );
 
 
@@ -190,6 +190,7 @@ class botlistapi {
      * @borrows getBot as getThisBot   
      */
     async getThisBot() {
+        if (!this.id) {throw new TypeError('There is no ID filled out.')}
         return this.getBot(this.id)
     };
 
@@ -224,11 +225,11 @@ class botlistapi {
      * Gets upvotes about a specific premium bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {String} id The ID of the bot you want to get information on.
+     * @param {number} id The ID of the bot you want to get information on.
      * @param {boolean} choice The choice if you want to get IDs or objects.
      */
     async getUpvotes(id, choice) {
-        if (typeof id !== 'string') {
+        if (typeof id !== 'nunber') {
             throw new TypeError("User ID is not a string");
         };
         return new Promise((resolve, reject) => {
