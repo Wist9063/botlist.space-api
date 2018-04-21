@@ -65,11 +65,11 @@ class botlistapi {
      * Retrieves information about a specific bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {Number} The ID of the bot you want to get information on.
+     * @param {string} The ID of the bot you want to get information on.
      */
     async getBot(id) {
-        if (typeof id !== 'number') {
-            throw new TypeError("Bot ID is not a number. (NaN)");
+        if (typeof id !== 'string') {
+            throw new TypeError("Bot ID is not a string.");
         };
         return new Promise((resolve, reject) => {
             if (!id) {return reject("Please enter an ID.")};
@@ -155,11 +155,11 @@ class botlistapi {
      * Gets information about a specific bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {Number} id The ID of the bot you want to get information on.
+     * @param {string} id The ID of the bot you want to get information on.
      */
     async getUser(id) {
-        if (typeof id !== 'number') {
-            throw new TypeError('User ID is not a number. (')
+        if (typeof id !== 'string') {
+            throw new TypeError('User ID is not a string.')
         };
         return new Promise((resolve, reject) => {
             if (!id) return reject('Please enter an ID.')
@@ -225,12 +225,12 @@ class botlistapi {
      * Gets upvotes about a specific premium bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
-     * @param {number} id The ID of the bot you want to get information on.
+     * @param {string} id The ID of the bot you want to get information on.
      * @param {boolean} choice The choice if you want to get IDs or objects.
      */
     async getUpvotes(id, choice) {
-        if (typeof id !== 'nunber') {
-            throw new TypeError("User ID is not a string");
+        if (typeof id !== 'string') {
+            throw new TypeError("User ID is not a string.");
         };
         return new Promise((resolve, reject) => {
 
