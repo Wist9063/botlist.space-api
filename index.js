@@ -72,7 +72,9 @@ class botlistapi {
             throw new TypeError("Bot ID is not a string.");
         };
         return new Promise((resolve, reject) => {
-            if (!id) {return reject("Please enter an ID.")};
+            if (!id) {
+                return reject("Please enter an ID.")
+            };
             request({
                     url: `${this._eURL}/bots/${id}`,
                     headers: {
@@ -115,8 +117,6 @@ class botlistapi {
                     }
                 }
             );
-
-
         })
     };
 
@@ -176,7 +176,7 @@ class botlistapi {
                     } catch (err) {
                         return reject(err);
                     }
-                } 
+                }
             );
 
 
@@ -190,7 +190,9 @@ class botlistapi {
      * @borrows getBot as getThisBot   
      */
     async getThisBot() {
-        if (!this.id) {throw new TypeError('There is no ID filled out.')}
+        if (!this.id) {
+            throw new TypeError('There is no ID filled out.')
+        }
         return this.getBot(this.id)
     };
 
@@ -221,7 +223,7 @@ class botlistapi {
         })
     };
 
-   /**
+    /**
      * Gets upvotes about a specific premium bot.
      * @returns {Promise} The returned data.
      * @memberof botlistapi
@@ -255,7 +257,7 @@ class botlistapi {
                 }
             }
 
-            if (choice === null || choice === false)  {
+            if (choice === null || choice === false) {
                 request({
                         url: `${this._eURL}/bots/${id}/upvotes`,
                         headers: {
