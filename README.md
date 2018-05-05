@@ -20,12 +20,17 @@ const botlistspaceapi = require('botlist.space-api')
 const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
 // Non-Sharded
-botlistapi.postStats(313).catch(i => {
+botlistapi.postStats(bot.guilds.size).catch(i => {
 console.log(i)
 });
 
 // Sharded
 botlistapi.postStats(ShardArrayHere).catch(i => {
+console.log(i)
+});
+
+// Internal Sharded
+botlistapi.postStats(bot.guilds.size).catch(i => {
 console.log(i)
 });
 ```
@@ -35,7 +40,7 @@ console.log(i)
 To get the entire list of bots on the website follow the text below:
 ```js
 const botlistspaceapi = require('botlist.space-api')
-const botlistapi = new BLSA('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new botlistspaceapi('SomeKeyhere', 'SomeIDhere')
 
 botlistapi.getWebsite().then(i => {
 console.log(i)
