@@ -23,6 +23,6 @@
   "homepage": "https://github.com/Wist9063/botlist.space-api#readme.md",
   "dependencies": {
     "request": "^2.85.0",
-    "snekfetch": "^3.6.1"
+    "snekfetch": "^4.0.0"
   }
 }
