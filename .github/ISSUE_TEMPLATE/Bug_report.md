@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Bug
+name: Code Issues
+about: Code Bugs or Spacing Issue
 
 ---
 
