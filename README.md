@@ -29,7 +29,7 @@ botlistapi.postStats(ShardArrayHere).catch(i => {
 console.log(i)
 });
 
-// Internal Sharding
+// Internal Sharding/
 botlistapi.postStats(bot.guilds.size).catch(i => {
 console.log(i)
 });
