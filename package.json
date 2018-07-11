@@ -1,6 +1,6 @@
 {
   "name": "botlist.space-api",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Well documented API Library Wrapper for botlist.space. Written in JavaScript.",
   "main": "src/index.js",
   "repository": {
