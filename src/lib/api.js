@@ -99,7 +99,8 @@ class BotlistSpaceClient {
       else {count = {"server_count": guild};}
 
       nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: count, header: { "Content-Type": "application/json", "Authorization": this.auth }})
-        .then(() => resolve("Guild count successfully sent."))
+        .then(res => res.json())
+        .then(json => resolve(json))
         .catch(err => reject(err));
     });
 
