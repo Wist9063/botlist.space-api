@@ -91,7 +91,7 @@ class BotlistSpaceClient {
    */
 
   postStats(guild) {
-    if (typeof guild !== "number" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a number or shard array.");}
+    if (typeof guild !== "string" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a number or shard array.");}
 
     return new Promise((resolve, reject) => {
       let count;
