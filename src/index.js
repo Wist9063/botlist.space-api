@@ -1,3 +1,3 @@
 module.exports = {
-  botlistAPI: require("./lib/botlistAPI")
+  botlistAPI: require("./lib/api")
 };
