@@ -97,8 +97,9 @@ class BotlistSpaceClient {
       let count;
       if (guild instanceof Array) {count = {"shards": guild};}
       else {count = {"server_count": guild};}
+      count = JSON.stringify(count);
 
-      nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: count, header: { "Content-Type": "application/json", "Authorization": this.auth }})
+      nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": this.auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -126,6 +127,7 @@ class BotlistSpaceClient {
 
 
   }
+
 
 
 }

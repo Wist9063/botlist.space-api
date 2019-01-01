@@ -12,7 +12,7 @@ To launch the API follow the text below:
 ```js
 const botlistspaceapi = require('botlist.space-api')
 
-const botlistapi = new botlistspaceapi.api('SomeKeyhere', 'SomeIDhere')
+const botlistapi = new botlistspaceapi.botlistAPI('YourKeyhere', 'BotIDhere')
 ```
 
 ## Posting Non-Sharded & Sharded Bot Guild Count
