@@ -15,12 +15,18 @@ const nodefetch = require("node-fetch");
  * @param {string} id ID from the bot.
  */
 
+function checkErrors(res) {
+  if (res.success) {
+    return res;
+  } else {
+    return res.message;
+  }
+}
+
 class BotlistSpaceClient {
   constructor(token, id) {
-    if (typeof token != "string") throw new TypeError("Token has to be a string.");
-    if (typeof id != "string") throw new TypeError("ID has to be a string.");
-    this._id = id;
-    this.auth = token;
+    this._id = id || null;
+    this.auth = token || null;
     this.url = "https://botlist.space/api";
   }
 
@@ -37,6 +43,7 @@ class BotlistSpaceClient {
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/bots/${id}`)
+        .then(res => checkErrors(res))
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
