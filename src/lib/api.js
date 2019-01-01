@@ -17,7 +17,7 @@ const nodefetch = require("node-fetch");
 
 function checkErrors(res) {
   if (res.success) {
-    return res;
+    return res.json();
   } else {
     return res.message;
   }
@@ -44,7 +44,6 @@ class BotlistSpaceClient {
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/bots/${id}`)
         .then(res => checkErrors(res))
-        .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
     });
