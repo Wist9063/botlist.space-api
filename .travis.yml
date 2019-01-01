@@ -7,7 +7,7 @@ install: npm install
 jobs:
   include:
     - stage: test
-      script: npm test.js
+      script: npm start test.js
 cache:
   directories:
     - node_modules
