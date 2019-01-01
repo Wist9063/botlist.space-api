@@ -15,14 +15,6 @@ const nodefetch = require("node-fetch");
  * @param {string} id ID from the bot.
  */
 
-function checkErrors(res) {
-  if (res.success) {
-    return res.json();
-  } else {
-    return res.message;
-  }
-}
-
 class BotlistSpaceClient {
   constructor(token, id) {
     this._id = id || null;
@@ -43,7 +35,7 @@ class BotlistSpaceClient {
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/bots/${id}`)
-        .then(res => checkErrors(res))
+        .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
     });
