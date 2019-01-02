@@ -42,6 +42,27 @@ class BotlistSpaceClient {
   }
 
   /**
+   * Fetches ALL bots on the website per page.
+   * 
+   * @memberOf BotlistSpaceClient
+   * @returns {promise} Returned data
+   */
+
+  getALLBots(pageNumb) {
+    if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
+
+    pageNumb = pageNumb || 1;
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/bots`, { headers: { "Authorization": this.auth, page: pageNumb } })
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
+
+  /**
    * Fetches info about a user.
    * 
    * @memberOf BotlistSpaceClient
@@ -54,6 +75,26 @@ class BotlistSpaceClient {
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/user/${id}`, { headers: { "Authorization": this.auth } })
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
+
+  /**
+   * Fetches info about the user's bots.
+   * 
+   * @memberOf BotlistSpaceClient
+   * @param {string} id 
+   * @returns {promise} Returned data.
+   */
+
+  getUserBot(id) {
+    if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/user/${id}/bots`, { headers: { "Authorization": this.auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -115,15 +156,13 @@ class BotlistSpaceClient {
    */
 
   getUpvotes(pageNumb, auth, id) {
-    if (typeof showIDs !== "boolean") {throw new TypeError("showIDs must be a boolean");}
+    if (typeof auth !== "string") {throw new TypeError("Bot key is not a string.");}
+    if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
     pageNumb = pageNumb || 1;
 
-    const parms = new URLSearchParams();
-    URLSearchParams.append("page", pageNumb);
-
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth }, body: { page: parms } })
+      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
