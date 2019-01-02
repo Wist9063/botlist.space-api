@@ -17,7 +17,7 @@ const nodefetch = require("node-fetch");
 class BotlistSpaceClient {
   constructor(userKEY) {
     if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to botlist.space to get your user token.");}
-    this._auth = userKEY;
+    this.auth = userKEY;
     this.url = "https://api.botlist.space/v1";
   }
 
@@ -33,7 +33,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}`, {header: { "Authorization": this._auth }})
+      nodefetch(`${this.url}/bots/${id}`, { headers: { "Authorization": this.auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -53,7 +53,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/user/${id}`, {header: { "Authorization": this._auth }})
+      nodefetch(`${this.url}/user/${id}`, { headers: { "Authorization": this.auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -70,7 +70,7 @@ class BotlistSpaceClient {
 
   getStats() {
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics/`, { header: { "Authorization": this._auth } })
+      nodefetch(`${this.url}/statistics/`, { headers: { "Authorization": this.auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -97,7 +97,7 @@ class BotlistSpaceClient {
       else {count = {"server_count": guild};}
       count = JSON.stringify(count);
 
-      nodefetch(`${this.url}/bots/${id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": auth }})
+      nodefetch(`${this.url}/bots/${id}`, { method: "POST", body: { count }, headers: { "Content-Type": "application/json", "Authorization": auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -121,7 +121,7 @@ class BotlistSpaceClient {
     URLSearchParams.append("page", pageNumb);
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${this._id}/upvotes`, {header: { "Content-Type": "application/json", "Authorization": auth }, body: {page: parms}})
+      nodefetch(`${this.url}/bots/${this._id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth }, body: { page: parms } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
