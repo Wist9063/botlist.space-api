@@ -114,14 +114,16 @@ class BotlistSpaceClient {
    * @returns {promise} Returned data
    */
 
-  getUpvotes(pageNumb, auth) {
+  getUpvotes(pageNumb, auth, id) {
     if (typeof showIDs !== "boolean") {throw new TypeError("showIDs must be a boolean");}
+
+    pageNumb = pageNumb || 1;
 
     const parms = new URLSearchParams();
     URLSearchParams.append("page", pageNumb);
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${this._id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth }, body: { page: parms } })
+      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth }, body: { page: parms } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
