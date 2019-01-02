@@ -40,7 +40,7 @@ class ServerlistSpaceClient {
     });
 
   }
-
+  
   /**
    * Fetches information about the site.
    * 
@@ -61,6 +61,29 @@ class ServerlistSpaceClient {
 
   }
 
+  /**
+   * Gets upvote from your server.
+   * 
+   * @memberOf ServerlistSpaceClient
+   * @param {string} pageNumb Page Number
+   * @param {string} auth The key from your server's page
+   * @returns {promise} Returned data
+   */
+
+  getUpvotes(pageNumb, auth, id) {
+    if (typeof auth !== "string") {throw new TypeError("Bot key is not a string.");}
+    if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
+
+    pageNumb = pageNumb || 1;
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
 
 }
 
