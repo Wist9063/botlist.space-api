@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)<br>
 
-Well documented, Light-Weight API Library Wrapper for botlist.space. Written in JavaScript(Node.js).
+Well documented, Light-Weight API Library Wrapper for botlist.space and serverlist.space *soon*. Written in JavaScript(Node.js).
 
 ***
 
@@ -20,11 +20,9 @@ To launch the API follow the text below:
 
 const  botlistspaceapi  =  require('botlist.space-api')
 
-  
-
 const  botlistapi  =  new  botlistspaceapi.botlistAPI('YourUserKeyhere')
 
 ```
 
- # For more documentation go here.
+ # Documentation Here
  [Click here](https://docs.hexaplexsoftware.ga/botlist.space-api/botlist-documentation) 
