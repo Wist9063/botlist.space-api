@@ -1,5 +1,5 @@
 /**
- * @file api main file
+ * @file botApi main file
  * @author wist9063 <https://hexaplexsoftware.ga/wist>
  * @license MIT License
  */
@@ -11,15 +11,14 @@ const nodefetch = require("node-fetch");
  * 
  * @class BotlistSpaceClient
  * @constructor
- * @param {string} token The token provided from the bot's page.
- * @param {string} id ID from the bot.
+ * @param {string} token The token provided from the user's page.
  */
 
 class BotlistSpaceClient {
-  constructor(token, id) {
-    this._id = id || null;
-    this.auth = token || null;
-    this.url = "https://botlist.space/api";
+  constructor(userKEY) {
+    if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to botlist.space to get your user token.");}
+    this._auth = userKEY;
+    this.url = "https://api.botlist.space/v1";
   }
 
   /**
@@ -34,7 +33,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}`)
+      nodefetch(`${this.url}/bots/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -54,7 +53,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/user/${id}`)
+      nodefetch(`${this.url}/user/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -70,14 +69,12 @@ class BotlistSpaceClient {
    */
 
   getStats() {
-
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/stats/`)
+      nodefetch(`${this.url}/statistics/`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
     });
-
   }
 
   /**
@@ -85,10 +82,11 @@ class BotlistSpaceClient {
    * 
    * @memberOf BotlistSpaceClient
    * @param {number | array} guild Guild count or array of guilds from shards
+   * @param {string} auth The key from your bot's page
    * @returns {promise} Returned data
    */
 
-  postStats(guild) {
+  postStats(guild, auth) {
     if (typeof guild !== "string" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a number or shard array.");}
 
     return new Promise((resolve, reject) => {
@@ -97,7 +95,7 @@ class BotlistSpaceClient {
       else {count = {"server_count": guild};}
       count = JSON.stringify(count);
 
-      nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": this.auth }})
+      nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -109,20 +107,23 @@ class BotlistSpaceClient {
    * Gets upvote from your bot.
    * 
    * @memberOf BotlistSpaceClient
-   * @param {boolean} [showIDs = true]
+   * @param {string} pageNumb Page Number
+   * @param {string} auth The key from your bot's page
    * @returns {promise} Returned data
    */
 
-  getUpvotes(showIDs = true) {
+  getUpvotes(pageNumb, auth) {
     if (typeof showIDs !== "boolean") {throw new TypeError("showIDs must be a boolean");}
 
+    const parms = new URLSearchParams();
+    URLSearchParams.append("page", pageNumb);
+
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${this._id}/upvotes?ids=${showIDs}`, {header: { "Content-Type": "application/json", "Authorization": this.auth }})
+      nodefetch(`${this.url}/bots/${this._id}/upvotes`, {header: { "Content-Type": "application/json", "Authorization": auth }, body: {page: parms}})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
     });
-
 
   }
 

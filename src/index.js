@@ -1,3 +1,4 @@
 module.exports = {
-  botlistAPI: require("./lib/api")
+  botlistAPI: require("./lib/botApi"),
+  serverlistAPI: require("./lib/serverApi")
 };
