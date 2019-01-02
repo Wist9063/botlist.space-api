@@ -70,7 +70,7 @@ class BotlistSpaceClient {
 
   getStats() {
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics/`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/statistics/`, { header: { "Content-Type": "application/json", "Authorization": this._auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -86,8 +86,10 @@ class BotlistSpaceClient {
    * @returns {promise} Returned data
    */
 
-  postStats(guild, auth) {
-    if (typeof guild !== "string" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a number or shard array.");}
+  postStats(guild, auth, id) {
+    if (typeof guild !== "string" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a string or shard array.");}
+    if (typeof auth !== "string") {throw new TypeError("Bot key is not a string.");}
+    if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
     return new Promise((resolve, reject) => {
       let count;
@@ -95,7 +97,7 @@ class BotlistSpaceClient {
       else {count = {"server_count": guild};}
       count = JSON.stringify(count);
 
-      nodefetch(`${this.url}/bots/${this._id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": auth }})
+      nodefetch(`${this.url}/bots/${id}`, {method: "POST", body: {count}, header: { "Content-Type": "application/json", "Authorization": auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -126,8 +128,6 @@ class BotlistSpaceClient {
     });
 
   }
-
-
 
 }
 
