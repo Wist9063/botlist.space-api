@@ -33,7 +33,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/bots/${id}`, {header: { "Authorization": this._auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -53,7 +53,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/user/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/user/${id}`, {header: { "Authorization": this._auth }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -70,7 +70,7 @@ class BotlistSpaceClient {
 
   getStats() {
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics/`, { header: { "Content-Type": "application/json", "Authorization": this._auth } })
+      nodefetch(`${this.url}/statistics/`, { header: { "Authorization": this._auth } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
