@@ -5,6 +5,7 @@
  */
 
 const nodefetch = require("node-fetch");
+const { version: ver } = require("botlist.space-api");
 
 /**
  * Create a new api
@@ -33,14 +34,14 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}`, { headers: { "Authorization": this.auth } })
+      nodefetch(`${this.url}/bots/${id}`, { headers: { "Authorization": this.auth, "User-Agent": `botlist.space-api/${ver} (https://www.npmjs.com/package/botlist.space-api)` } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
     });
 
   }
-
+   
   /**
    * Fetches ALL bots on the website per page.
    * 
@@ -52,6 +53,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     pageNumb = pageNumb || 1;
+    if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/bots`, { headers: { "Authorization": this.auth, page: pageNumb } })
@@ -160,6 +162,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
     pageNumb = pageNumb || 1;
+    if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })

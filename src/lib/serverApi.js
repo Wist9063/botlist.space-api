@@ -52,6 +52,7 @@ class ServerlistSpaceClient {
   getALLServers(pageNumb) {
 
     pageNumb = pageNumb || 1;
+    if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/servers/`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
@@ -112,6 +113,7 @@ class ServerlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     pageNumb = pageNumb || 1;
+    if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/users/${id}/servers`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
@@ -136,6 +138,7 @@ class ServerlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
     pageNumb = pageNumb || 1;
+    if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
       nodefetch(`${this.url}/servers/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
