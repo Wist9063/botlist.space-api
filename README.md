@@ -10,19 +10,18 @@ Well documented, Light-Weight API Library Wrapper for botlist.space and serverli
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8e83487b2a349aba7501bfc156060ea)](https://www.codacy.com/app/Wist9063/botlist.space-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wist9063/botlist.space-api&amp;utm_campaign=Badge_Grade)<br>
 
-  
 
 ##  Launch the API
 
 To launch the API follow the text below:
 
 ```js
-
 const  botlistspaceapi  =  require('botlist.space-api')
 
 const  botlistapi  =  new  botlistspaceapi.botlistAPI('YourUserKeyhere')
-
 ```
 
- # Documentation Here
+***
+
+## Documentation Here
  [Click here](https://docs.hexaplexsoftware.ga/botlist.space-api/botlist-documentation) 
