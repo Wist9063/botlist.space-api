@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Wist9063/botlist.space-api/issues"
   },
-  "homepage": "https://github.com/Wist9063/botlist.space-api#readme.md",
+  "homepage": "https://docs.hexaplexsoftware.ga/botlist.space-api/botlist-documentation",
   "dependencies": {
     "node-fetch": "^2.1.2"
   }
