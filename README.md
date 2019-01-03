@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/botlist.space-api.png)](https://nodei.co/npm/botlist.space-api/)<br>
 
-Well documented, Light-Weight API Library Wrapper for botlist.space and serverlist.space *soon*. Written in JavaScript(Node.js).
+Well documented, Light-Weight API Library Wrapper for botlist.space and serverlist.space. Written in JavaScript(Node.js).
 
 ***
 
