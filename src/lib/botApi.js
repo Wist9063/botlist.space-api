@@ -5,7 +5,6 @@
  */
 
 const nodefetch = require("node-fetch");
-const { version: ver } = require("botlist.space-api");
 
 /**
  * Create a new api
@@ -34,7 +33,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}`, { headers: { "Authorization": this.auth, "User-Agent": `botlist.space-api/${ver} (https://www.npmjs.com/package/botlist.space-api)` } })
+      nodefetch(`${this.url}/bots/${id}`, { headers: { "Authorization": this.auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -56,7 +55,7 @@ class BotlistSpaceClient {
     if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots`, { headers: { "Authorization": this.auth, page: pageNumb } })
+      nodefetch(`${this.url}/bots`, { headers: { "Authorization": this.auth, page: pageNumb, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -76,7 +75,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/user/${id}`, { headers: { "Authorization": this.auth } })
+      nodefetch(`${this.url}/user/${id}`, { headers: { "Authorization": this.auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -96,7 +95,7 @@ class BotlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/user/${id}/bots`, { headers: { "Authorization": this.auth } })
+      nodefetch(`${this.url}/user/${id}/bots`, { headers: { "Authorization": this.auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -113,7 +112,7 @@ class BotlistSpaceClient {
 
   getStats() {
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics/`, { headers: { "Authorization": this.auth } })
+      nodefetch(`${this.url}/statistics/`, { headers: { "Authorization": this.auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -140,7 +139,7 @@ class BotlistSpaceClient {
       else {count = {"server_count": guild};}
       count = JSON.stringify(count);
 
-      nodefetch(`${this.url}/bots/${id}`, { method: "POST", body: { count }, headers: { "Content-Type": "application/json", "Authorization": auth } })
+      nodefetch(`${this.url}/bots/${id}`, { method: "POST", body: { count }, headers: { "Content-Type": "application/json", "Authorization": auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -165,7 +164,7 @@ class BotlistSpaceClient {
     if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
+      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));

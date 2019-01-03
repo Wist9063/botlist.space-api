@@ -33,7 +33,7 @@ class ServerlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/servers/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/servers/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -55,7 +55,7 @@ class ServerlistSpaceClient {
     if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/servers/`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
+      nodefetch(`${this.url}/servers/`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -73,7 +73,7 @@ class ServerlistSpaceClient {
   getStats() {
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/statistics`, {header: { "Content-Type": "application/json", "Authorization": this._auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -93,7 +93,7 @@ class ServerlistSpaceClient {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/users/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/users/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -116,7 +116,7 @@ class ServerlistSpaceClient {
     if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/users/${id}/servers`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
+      nodefetch(`${this.url}/users/${id}/servers`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -141,7 +141,7 @@ class ServerlistSpaceClient {
     if (typeof pageNumb !== "number") {throw new TypeError("pageNumb is not a number.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/servers/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
+      nodefetch(`${this.url}/servers/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb, "User-Agent": "botlist.space-api (https://www.npmjs.com/package/botlist.space-api)" } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
