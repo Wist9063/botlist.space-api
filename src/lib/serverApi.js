@@ -16,13 +16,13 @@ const nodefetch = require("node-fetch");
 
 class ServerlistSpaceClient {
   constructor(userKEY) {
-    if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to serverlist.space to get your user token.");}
+    if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to serverlist.space to get your user token or else the function's use will be limited.");}
     this._auth = userKEY;
     this.url = "https://api.serverlist.space/v1";
   }
 
   /**
-   * Fetches information about a specific server.
+   * Fetches information about a specific server by ID.
    * 
    * @memberOf ServerlistSpaceClient
    * @param {string} id 
@@ -40,20 +40,81 @@ class ServerlistSpaceClient {
     });
 
   }
+
+  /**
+   * Fetches ALL servers on the website per page.
+   * 
+   * @memberOf ServerlistSpaceClient
+   * @param {string} pageNumb Number of page
+   * @returns {promise} Returned data
+   */
+
+  getALLServers(pageNumb) {
+
+    pageNumb = pageNumb || 1;
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/servers/`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
   
   /**
    * Fetches information about the site.
+   * 
+   * @memberOf ServerlistSpaceClient
+   * @returns {promise} Returned data
+   */
+
+  getStats() {
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/statistics`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
+
+  /**
+   * Fetches user by id.
    * 
    * @memberOf ServerlistSpaceClient
    * @param {string} id 
    * @returns {promise} Returned data
    */
 
-  getStats() {
+  getUser(id) {
     if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/statistics`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+      nodefetch(`${this.url}/users/${id}`, {header: { "Content-Type": "application/json", "Authorization": this._auth }})
+        .then(res => res.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err));
+    });
+
+  }
+
+  /**
+   * Fetches user's servers by ID.
+   * 
+   * @memberOf ServerlistSpaceClient
+   * @param {string} id 
+   * @returns {promise} Returned data
+   */
+
+  getUserServers(id, pageNumb) {
+    if (typeof id !== "string") {throw new TypeError("ID must be a string.");}
+
+    pageNumb = pageNumb || 1;
+
+    return new Promise((resolve, reject) => {
+      nodefetch(`${this.url}/users/${id}/servers`, {header: { "Content-Type": "application/json", "Authorization": this._auth, page: pageNumb }})
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));
@@ -71,13 +132,13 @@ class ServerlistSpaceClient {
    */
 
   getUpvotes(pageNumb, auth, id) {
-    if (typeof auth !== "string") {throw new TypeError("Bot key is not a string.");}
+    if (typeof auth !== "string") {throw new TypeError("Server key is not a string.");}
     if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
     pageNumb = pageNumb || 1;
 
     return new Promise((resolve, reject) => {
-      nodefetch(`${this.url}/bots/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
+      nodefetch(`${this.url}/servers/${id}/upvotes`, { headers: { "Content-Type": "application/json", "Authorization": auth, page: pageNumb } })
         .then(res => res.json())
         .then(json => resolve(json))
         .catch(err => reject(err));

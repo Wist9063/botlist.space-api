@@ -16,7 +16,7 @@ const nodefetch = require("node-fetch");
 
 class BotlistSpaceClient {
   constructor(userKEY) {
-    if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to botlist.space to get your user token.");}
+    if (typeof userKEY !== "string") {throw console.warn("A user key is needed to do most functions, please go to botlist.space to get your user token or else the function's use will be limited.");}
     this.auth = userKEY;
     this.url = "https://api.botlist.space/v1";
   }
