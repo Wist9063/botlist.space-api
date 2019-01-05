@@ -118,7 +118,7 @@ class BotlistSpaceClient {
         .catch(err => reject(err));
     });
   }
-
+  
   /**
    * Post guild count to the site.
    * 
@@ -129,7 +129,7 @@ class BotlistSpaceClient {
    */
 
   postStats(guild, auth, id) {
-    if (typeof guild !== "string" && !(guild instanceof Array)) {throw new TypeError("Guild count is not a string or shard array.");}
+    if (typeof guild !== "string" || !(guild instanceof Array)) {throw new TypeError("Guild count is not a string or shard array.");}
     if (typeof auth !== "string") {throw new TypeError("Bot key is not a string.");}
     if (typeof id !== "string") {throw new TypeError("ID is not a string.");}
 
